@@ -20,6 +20,8 @@ def exibir_opcoes():
     print("4. Sair\n")
     
 def exibir_subtitulo(texto):
+    """Função para exibir o texto da função escolhida"""
+
     os.system("cls")
     linha = "*" * (len(texto))
     print(linha)
@@ -35,10 +37,21 @@ def finalizando_programa():
     exibir_subtitulo("Encerrando o programa.")
 
 def opcao_invalida():
+    """Função utilizada para caso o usuário digite uma opção que não está listada, levando o usuário de volta ao menu principal"""
+
     print("Opcão invalida!\n")
     voltando_ao_menu()
 
 def cadastrar_restaurante():
+    """Função responsável pelo cadastro de novos restaurantes
+    
+    INPUTS:
+    - Nome do restaurante para cadastrar
+    - Catergoria do restaurante
+    
+    OUTPUTS:
+    - Adiciona o restaurante do INPUT para a lista de restaurantes"""
+
     exibir_subtitulo("Cadastro de novos restaurantes")
     cadastrando_restaurante = input("Digite o nome do restaurante que você deseja cadastrar: ")
     categoria_restaurante = input(f"\nDigite a categoria do restuarante {cadastrando_restaurante}: ")
@@ -48,6 +61,8 @@ def cadastrar_restaurante():
     voltando_ao_menu()
 
 def listar_restaurantes():
+    """Função responsável por mostrar todos os restaurantes cadastrados, mostrando nome, categoria, e se está ativo ou não"""
+
     exibir_subtitulo("Listando restaurantes")
     print(f"{"Nome do restaurante".ljust(22)} | {"Categoria".ljust(20)} | Status")
     print("")
@@ -60,8 +75,20 @@ def listar_restaurantes():
     voltando_ao_menu()
 
 def alternar_estado_restaurante():
+    """Função responsável por ativar ou desativar um restaurante
     
+    INPUT:
+    - Nome do restaurante para ativar ou desativar
+    
+    OUTPUT:
+    - Altera o status do restaurante"""
+
     def restaurante_invalido():
+        """Função usada para caso o usuário digite um restaurante não cadastrado
+        
+        INPUT:
+        - Dar ENTER para digitar novamente"""
+
         print("Restaurante não encontrado")
         input("\nAperte qualquer tecla para tentar novamente")
         alternar_estado_restaurante()
@@ -83,6 +110,8 @@ def alternar_estado_restaurante():
     voltando_ao_menu()
 
 def selecionar_opcao():
+    """Função para direcionar o usuário para a opção escolhida"""
+
     try:
         opcao_escolhida = int(input("Escolha uma opção: "))
 
@@ -100,6 +129,8 @@ def selecionar_opcao():
         opcao_invalida()
 
 def main():
+    """Função para mostrar o menu principal do programa"""
+    
     os.system("cls")
     exibir_nome_programa()
     exibir_opcoes()
