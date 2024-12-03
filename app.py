@@ -50,6 +50,7 @@ def cadastrar_restaurante():
 def listar_restaurantes():
     exibir_subtitulo("Listando restaurantes")
     print(f"{"Nome do restaurante".ljust(22)} | {"Categoria".ljust(20)} | Status")
+    print("")
     for restaurante in restaurantes:
         nome_restaurante = restaurante["nome"]
         categoria = restaurante["categoria"]
@@ -59,7 +60,13 @@ def listar_restaurantes():
     voltando_ao_menu()
 
 def alternar_estado_restaurante():
-    exibir_subtitulo("Alterando estado do restaurante")
+    
+    def restaurante_invalido():
+        print("Restaurante não encontrado")
+        input("\nAperte qualquer tecla para tentar novamente")
+        alternar_estado_restaurante()
+
+    exibir_subtitulo("Alterando status do restaurante")
     nome_restaurante = input("Digite o nome do restaurante que deseja alternar o estado: ")
     restaurante_encontrado = False
 
@@ -69,9 +76,10 @@ def alternar_estado_restaurante():
             restaurante["ativo"] = not restaurante["ativo"]
             mensagem = f"O restaurante {nome_restaurante} foi ativado com sucesso" if restaurante["ativo"] else f"O restaurante {nome_restaurante} foi desativado com sucesso"
             print(mensagem)
+
     if not restaurante_encontrado:
-        print("O restaurante não foi encotnrado")
-    
+             restaurante_invalido()
+        
     voltando_ao_menu()
 
 def selecionar_opcao():
